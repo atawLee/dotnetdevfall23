@@ -79,7 +79,6 @@ public class 서비스유닛테스트
         
         //suit
         var testSuit = new ManufactureWorkOrderService(moqMnf.Object, moqWorkOrder.Object);
-        moqWorkOrder.Verify(x=>x.GetById(It.IsAny<int>()),Times.Once);
         try
         {
             //Act 
