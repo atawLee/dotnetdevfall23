@@ -32,6 +32,7 @@ public class ManufactureWorkOrderService
             Summary = summary,
             Worker = worker,
             WorkStartTime = default,
+            WorkOrderId = workOrderId
         };
         _manufactureRepository.Add(manufacture);
     }

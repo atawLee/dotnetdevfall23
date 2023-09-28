@@ -19,7 +19,6 @@ public class 목과스텁
         StubManufactureRepository mnfRepository = new ();
         StubWorkOrderRepository workOrderRepository = new();
 
-
         //suit
         var testSuit = new ManufactureWorkOrderService(mnfRepository, workOrderRepository);
 
@@ -37,8 +36,6 @@ public class 목과스텁
 public class StubManufactureRepository : IRepository<Manufacture>
 {
     public List<Manufacture> StubData { get; set; }
-
-    
 
     public StubManufactureRepository()
     {

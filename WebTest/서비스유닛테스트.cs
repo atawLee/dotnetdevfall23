@@ -71,13 +71,15 @@ public class 서비스유닛테스트
         workOrderItem.Id = 0;
         workOrders.Add(workOrderItem);
 
+        int callback = 0;
         moqWorkOrder
             .Setup(x => x.GetById(It.IsAny<int>()))
-            .Returns((int id) => workOrders.FirstOrDefault(x => x.Id == id));
-
+            .Callback<int>((id) => { callback = id;})
+            .Returns((int id) => workOrders.FirstOrDefault(x => x.Id == id)); 
+        
         //suit
         var testSuit = new ManufactureWorkOrderService(moqMnf.Object, moqWorkOrder.Object);
-
+        moqWorkOrder.Verify(x=>x.GetById(It.IsAny<int>()),Times.Once);
         try
         {
             //Act 
