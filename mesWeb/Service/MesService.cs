@@ -17,10 +17,6 @@ public class ManufactureWorkOrderService
         _workOrderRepository = workOrderRepository;
     }
 
-    // Manufacture Methods
-    public IEnumerable<Manufacture> GetAllManufactures() => _manufactureRepository.GetAll();
-    public Manufacture GetManufactureById(int id) => _manufactureRepository.GetById(id);
-
     public void AddManufacture(int workOrderId, string summary, string worker)
     {
         var item = _workOrderRepository.GetById(workOrderId);
@@ -35,6 +31,10 @@ public class ManufactureWorkOrderService
         };
         _manufactureRepository.Add(manufacture);
     }
+
+    // Manufacture Methods
+    public IEnumerable<Manufacture> GetAllManufactures() => _manufactureRepository.GetAll();
+    public Manufacture GetManufactureById(int id) => _manufactureRepository.GetById(id);
     public void UpdateManufacture(Manufacture manufacture) => _manufactureRepository.Update(manufacture);
     public void DeleteManufacture(int id) => _manufactureRepository.Delete(id);
 
