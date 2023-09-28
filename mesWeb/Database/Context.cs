@@ -1,5 +1,6 @@
 ﻿namespace mesWeb.Entity;
 
+using mesWeb.Database.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
