@@ -19,7 +19,7 @@ public class WorkOrderRepository : IRepository<WorkOrder>
 
     public WorkOrder GetById(int id)
     {
-        return _context.Set<WorkOrder>().Include(w => w.Manufactures).FirstOrDefault(w => w.Id == id);
+        return _context.Set<WorkOrder>().FirstOrDefault(w => w.Id == id);
     }
 
     public void Add(WorkOrder entity)

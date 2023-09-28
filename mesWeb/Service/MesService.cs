@@ -20,7 +20,21 @@ public class ManufactureWorkOrderService
     // Manufacture Methods
     public IEnumerable<Manufacture> GetAllManufactures() => _manufactureRepository.GetAll();
     public Manufacture GetManufactureById(int id) => _manufactureRepository.GetById(id);
-    public void AddManufacture(Manufacture manufacture) => _manufactureRepository.Add(manufacture);
+
+    public void AddManufacture(int workOrderId, string summary, string worker)
+    {
+        var item = _workOrderRepository.GetById(workOrderId);
+        if (item is null) throw new Exception("Not Found");
+        if (item.ExpireDate < DateTime.Now) throw new Exception("Expired Order");
+
+        Manufacture manufacture = new()
+        {
+            Summary = summary,
+            Worker = worker,
+            WorkStartTime = default,
+        };
+        _manufactureRepository.Add(manufacture);
+    }
     public void UpdateManufacture(Manufacture manufacture) => _manufactureRepository.Update(manufacture);
     public void DeleteManufacture(int id) => _manufactureRepository.Delete(id);
 
