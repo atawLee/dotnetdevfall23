@@ -19,15 +19,16 @@ public class ManufactureWorkOrderService
 
     public void AddManufacture(int workOrderId, string summary, string worker)
     {
-        var item = _workOrderRepository.GetById(workOrderId);
-        if (item is null) throw new Exception("Not Found");
-        if (item.ExpireDate < DateTime.Now) throw new Exception("Expired Order");
+        var wo = _workOrderRepository.GetById(workOrderId);
+        if (wo is null) throw new Exception("Not Found");
+        if (wo.ExpireDate < DateTime.Now) throw new Exception("Expired Order");
 
         Manufacture manufacture = new()
         {
             Summary = summary,
             Worker = worker,
             WorkStartTime = default,
+            WorkOrderId = workOrderId
         };
         _manufactureRepository.Add(manufacture);
     }
