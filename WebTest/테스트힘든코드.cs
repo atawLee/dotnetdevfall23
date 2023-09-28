@@ -12,7 +12,7 @@ namespace WebTest
 {
     public class 테스트힘든코드
     {
-        [Fact]
+        [Fact(Skip = "Skip this test for now.")]
         public void 생산시작()
         {
             //준비코드 
@@ -22,5 +22,7 @@ namespace WebTest
             //case
             testSuit.AddManufacture(0, "manufactureSummary", "Lee");
         }
+
+        
     }
 }

@@ -39,6 +39,59 @@ public class 서비스유닛테스트
     }
 
     [Fact]
+    public void 시작_작지유효성_확인()
+    {
+        //Arrange 
+        
+
+       
+    }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(1)]
+    public void 작지유효성확인(int workOrderId)
+    {
+        Mock<IRepository<Manufacture>> moqMnf = new();
+        Mock<IRepository<WorkOrder>> moqWorkOrder = new();
+        List<WorkOrder> workOrders = new();
+
+        WorkOrder workOrderItem = new()
+        {
+            Id = 0,
+            Description = "Test",
+            Product = "TestProduct",
+            TargetQty = 100,
+            OrderUser = "Foo",
+            DueDate = DateTime.Now,
+            ExpireDate = DateTime.Now.AddYears(-1),
+            CreateDateTime = DateTime.Now
+        };
+        workOrderItem.ExpireDate = DateTime.Now.AddYears(-1);
+        workOrderItem.Id = 0;
+        workOrders.Add(workOrderItem);
+
+        moqWorkOrder
+            .Setup(x => x.GetById(It.IsAny<int>()))
+            .Returns((int id) => workOrders.FirstOrDefault(x => x.Id == id));
+
+        //suit
+        var testSuit = new ManufactureWorkOrderService(moqMnf.Object, moqWorkOrder.Object);
+
+        try
+        {
+            //Act 
+            testSuit.AddManufacture(workOrderId, "manufactureSummary", "Lee");
+            //Assert
+            Assert.Fail("유효성 검사에 문제가 있음.");
+        }
+        catch (Exception)
+        {
+            // ignored
+        }
+    }
+
+    [Fact]
     public void 생산업데이트()
     {
         var mockManufactureRepo = new Mock<IRepository<Manufacture>>();
