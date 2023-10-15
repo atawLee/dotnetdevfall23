@@ -1,13 +1,14 @@
 ﻿using mesWeb.Database.Entity;
+using mesWeb.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace mesWeb.Repository;
 
 public class ManufactureRepository : IRepository<Manufacture>
 {
-    private readonly DbContext _context;
+    private readonly AppDbContext _context;
 
-    public ManufactureRepository(DbContext context)
+    public ManufactureRepository(AppDbContext context)
     {
         _context = context;
     }

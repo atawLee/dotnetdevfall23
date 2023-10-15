@@ -1,13 +1,14 @@
 ﻿using mesWeb.Database.Entity;
+using mesWeb.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace mesWeb.Repository;
 
 public class WorkOrderRepository : IRepository<WorkOrder>
 {
-    private readonly DbContext _context;
+    private readonly AppDbContext _context;
 
-    public WorkOrderRepository(DbContext context)
+    public WorkOrderRepository(AppDbContext context)
     {
         _context = context;
     }
