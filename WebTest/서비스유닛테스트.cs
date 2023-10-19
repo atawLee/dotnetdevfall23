@@ -6,12 +6,10 @@ using Xunit;
 
 namespace WebTest;
 
-public class ¼­ºñ½ºÀ¯´ÖÅ×½ºÆ®
+public class ì„œë¹„ìŠ¤ìœ ë‹›í…ŒìŠ¤íŠ¸
 {
-    // ... ±âÁ¸ÀÇ Å×½ºÆ® ÄÚµå ...
-
     [Fact]
-    public void »ı»ê½ÃÀÛ()
+    public void ìƒì‚°ì‹œì‘()
     {
         //Arrange 
         var moqMnf = new Mock<IRepository<Manufacture>>();
@@ -32,14 +30,14 @@ public class ¼­ºñ½ºÀ¯´ÖÅ×½ºÆ®
         //suit
         var testSuit = new ManufactureWorkOrderService(moqMnf.Object, moqWorkOrder.Object);
         
-        //case
+        //act
         testSuit.AddManufacture(0,"manufactureSummary","Lee");
 
         moqMnf.Verify(m => m.Add(It.IsAny<Manufacture>()), Times.Once);
     }
 
     [Fact]
-    public void ½ÃÀÛ_ÀÛÁöÀ¯È¿¼º_È®ÀÎ()
+    public void ì‹œì‘_ì‘ì§€ìœ íš¨ì„±_í™•ì¸()
     {
         //Arrange 
         
@@ -50,7 +48,7 @@ public class ¼­ºñ½ºÀ¯´ÖÅ×½ºÆ®
     [Theory]
     [InlineData(0)]
     [InlineData(1)]
-    public void ÀÛÁöÀ¯È¿¼ºÈ®ÀÎ(int workOrderId)
+    public void ì‘ì§€ìœ íš¨ì„±í™•ì¸(int workOrderId)
     {
         Mock<IRepository<Manufacture>> moqMnf = new();
         Mock<IRepository<WorkOrder>> moqWorkOrder = new();
@@ -84,7 +82,7 @@ public class ¼­ºñ½ºÀ¯´ÖÅ×½ºÆ®
             //Act 
             testSuit.AddManufacture(workOrderId, "manufactureSummary", "Lee");
             //Assert
-            Assert.Fail("À¯È¿¼º °Ë»ç¿¡ ¹®Á¦°¡ ÀÖÀ½.");
+            Assert.Fail("ìœ íš¨ì„± ê²€ì‚¬ì— ë¬¸ì œê°€ ìˆìŒ.");
         }
         catch (Exception)
         {
@@ -93,7 +91,7 @@ public class ¼­ºñ½ºÀ¯´ÖÅ×½ºÆ®
     }
 
     [Fact]
-    public void »ı»ê¾÷µ¥ÀÌÆ®()
+    public void ìƒì‚°ì—…ë°ì´íŠ¸()
     {
         var mockManufactureRepo = new Mock<IRepository<Manufacture>>();
         var mockWorkOrderRepo = new Mock<IRepository<WorkOrder>>();
@@ -107,7 +105,7 @@ public class ¼­ºñ½ºÀ¯´ÖÅ×½ºÆ®
     }
 
     [Fact]
-    public void »ı»ê»èÁ¦()
+    public void ìƒì‚°ì‚­ì œ()
     {
         var mockManufactureRepo = new Mock<IRepository<Manufacture>>();
         var mockWorkOrderRepo = new Mock<IRepository<WorkOrder>>();
@@ -121,7 +119,7 @@ public class ¼­ºñ½ºÀ¯´ÖÅ×½ºÆ®
     }
 
     [Fact]
-    public void ÀÛ¾÷Áö½ÃÃß°¡()
+    public void ì‘ì—…ì§€ì‹œì¶”ê°€()
     {
         var mockManufactureRepo = new Mock<IRepository<Manufacture>>();
         var mockWorkOrderRepo = new Mock<IRepository<WorkOrder>>();
@@ -135,7 +133,7 @@ public class ¼­ºñ½ºÀ¯´ÖÅ×½ºÆ®
     }
 
     [Fact]
-    public void ÀÛ¾÷Áö½Ãº¯°æ()
+    public void ì‘ì—…ì§€ì‹œë³€ê²½()
     {
         var mockManufactureRepo = new Mock<IRepository<Manufacture>>();
         var mockWorkOrderRepo = new Mock<IRepository<WorkOrder>>();
@@ -149,7 +147,7 @@ public class ¼­ºñ½ºÀ¯´ÖÅ×½ºÆ®
     }
 
     [Fact]
-    public void ÀÛ¾÷Áö½Ã»èÁ¦()
+    public void ì‘ì—…ì§€ì‹œì‚­ì œ()
     {
         var mockManufactureRepo = new Mock<IRepository<Manufacture>>();
         var mockWorkOrderRepo = new Mock<IRepository<WorkOrder>>();
