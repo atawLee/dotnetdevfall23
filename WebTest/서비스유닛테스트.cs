@@ -13,10 +13,10 @@ public class 서비스유닛테스트
     [Fact]
     public void 생산시작()
     {
-        //준비코드 
-        Mock<IRepository<Manufacture>> moqMnf = new ();
-        var mockWorkOrderRepo = new Mock<IRepository<WorkOrder>>();
-        WorkOrder workorder = new()
+        //Arrange 
+        var moqMnf = new Mock<IRepository<Manufacture>>();
+        var moqWorkOrder = new Mock<IRepository<WorkOrder>>();
+        WorkOrder workOrder = new()
         {
             Id = 0,
             Description = "Test",
@@ -27,10 +27,10 @@ public class 서비스유닛테스트
             ExpireDate = DateTime.Now.AddYears(1),
             CreateDateTime = DateTime.Now
         };
-        mockWorkOrderRepo.Setup(x => x.GetById(0)).Returns(workorder);
+        moqWorkOrder.Setup(x => x.GetById(0)).Returns(workOrder);
         
         //suit
-        var testSuit = new ManufactureWorkOrderService(moqMnf.Object, mockWorkOrderRepo.Object);
+        var testSuit = new ManufactureWorkOrderService(moqMnf.Object, moqWorkOrder.Object);
         
         //case
         testSuit.AddManufacture(0,"manufactureSummary","Lee");
